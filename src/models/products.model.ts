@@ -1,4 +1,4 @@
-import { ResultSetHeader } from 'mysql2/promise';
+import { ResultSetHeader, RowDataPacket } from 'mysql2/promise';
 import IProduct from '../interfaces/IProduct';
 import connection from './connection';
 
@@ -15,6 +15,15 @@ async function register(product: IProduct): Promise<IProduct> {
   return newProduct;
 }
 
+async function getAll(): Promise<IProduct[]> {
+  const query = 'SELECT * FROM Trybesmith.products;';
+
+  const [products] = await connection.execute<RowDataPacket[]>(query);
+  
+  return products as IProduct[];
+}
+
 export default {
   register,
+  getAll,
 };
