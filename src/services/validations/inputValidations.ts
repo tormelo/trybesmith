@@ -1,7 +1,8 @@
 import IProduct from '../../interfaces/IProduct';
-import productBodySchema from './schemas';
+import IUser from '../../interfaces/IUser';
+import { productBodySchema, userBodySchema } from './schemas';
 
-const validateProductBody = (productBody: IProduct) => {
+export function validateProductBody(productBody: IProduct) {
   const { error } = productBodySchema.validate(productBody);
   if (error) {
     const { message } = error;
@@ -10,6 +11,15 @@ const validateProductBody = (productBody: IProduct) => {
   }
 
   return { type: null, message: '' };
-};
+}
 
-export default validateProductBody;
+export function validateUserBody(userBody: IUser) {
+  const { error } = userBodySchema.validate(userBody);
+  if (error) {
+    const { message } = error;
+    if (message.includes('required')) return { type: 'REQUIRED_FIELD', message };
+    return { type: 'INVALID_VALUE', message: error.message };
+  }
+
+  return { type: null, message: '' };
+}
