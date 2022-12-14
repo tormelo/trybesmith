@@ -9,6 +9,12 @@ async function register(product: IProduct) {
   return { type: null, message: newProduct };
 }
 
+async function getAll() {
+  const products = await productsModel.getAll();
+  return { type: null, message: products };
+}
+
 export default {
   register,
+  getAll,
 };
