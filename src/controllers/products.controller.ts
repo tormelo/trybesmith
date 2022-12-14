@@ -8,6 +8,12 @@ async function register(req: Request, res:Response) {
   return res.status(201).json(message);
 }
 
+async function getAll(req: Request, res:Response) {
+  const { message } = await productsService.getAll();
+  return res.status(200).json(message);
+}
+
 export default {
   register,
+  getAll,
 };
