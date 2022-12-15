@@ -11,3 +11,8 @@ export const userBodySchema = Joi.object({
   level: Joi.number().min(1).required(),
   password: Joi.string().min(8).required(),
 });
+
+export const credentialsBodySchema = Joi.object({
+  username: Joi.string().required(),
+  password: Joi.string().required(),
+});

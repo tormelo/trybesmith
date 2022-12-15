@@ -1,5 +1,6 @@
 const errorMap = {
   REQUIRED_FIELD: 400,
+  UNAUTHORIZED: 401,
   INVALID_VALUE: 422,
 };
 
