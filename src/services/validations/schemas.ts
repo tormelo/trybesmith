@@ -16,3 +16,11 @@ export const credentialsBodySchema = Joi.object({
   username: Joi.string().required(),
   password: Joi.string().required(),
 });
+
+export const orderBodySchema = Joi.object({
+  userId: Joi.number(),
+  productsIds: Joi.array().items(Joi.number()).min(1).required()
+    .messages({
+      'array.min': '"productsIds" must include only numbers',
+    }),
+});

@@ -1,9 +1,15 @@
 import { ObjectSchema } from 'joi';
+import IOrder from '../../interfaces/IOrder';
 import IProduct from '../../interfaces/IProduct';
 import IUser from '../../interfaces/IUser';
 import IUserCredentials from '../../interfaces/IUserCredentials';
 import usersModel from '../../models/users.model';
-import { credentialsBodySchema, productBodySchema, userBodySchema } from './schemas';
+import { 
+  credentialsBodySchema, 
+  orderBodySchema, 
+  productBodySchema, 
+  userBodySchema, 
+} from './schemas';
 
 function validateSchema<T>(data: T, schema: ObjectSchema) {
   const { error } = schema.validate(data);
@@ -22,6 +28,10 @@ export function validateProductBody(productBody: IProduct) {
 
 export function validateUserBody(userBody: IUser) {
   return validateSchema<IUser>(userBody, userBodySchema);
+}
+
+export function validateOrderBody(orderBody: IOrder) {
+  return validateSchema<IOrder>(orderBody, orderBodySchema);
 }
 
 function validateCredentialsData(userCredentials: IUserCredentials) {
