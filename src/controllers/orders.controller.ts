@@ -4,7 +4,6 @@ import ordersService from '../services/orders.service';
 import mapError from '../utils/errorMap';
 
 async function register(req: Request, res:Response) {
-  console.log(req.body);
   const { payload, productsIds } = req.body;
   const order: IOrder = { userId: payload.id, productsIds };
 
