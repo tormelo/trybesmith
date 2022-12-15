@@ -15,6 +15,19 @@ async function register(product: IProduct): Promise<IProduct> {
   return newProduct;
 }
 
+async function update(productId: number, orderId: number): Promise<ResultSetHeader> {
+  const query = `
+  UPDATE Trybesmith.products
+  SET order_id = ?
+  WHERE id = ?;`;
+
+  const values = [orderId, productId];
+  
+  const [result] = await connection.execute<ResultSetHeader>(query, values);
+
+  return result;
+}
+
 async function getAll(): Promise<IProduct[]> {
   const query = 'SELECT * FROM Trybesmith.products;';
 
@@ -25,5 +38,6 @@ async function getAll(): Promise<IProduct[]> {
 
 export default {
   register,
+  update,
   getAll,
 };
