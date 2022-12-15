@@ -1,9 +1,9 @@
-interface IUser {
+import IUserCredentials from './IUserCredentials';
+
+interface IUser extends IUserCredentials{
   id?: number,
-  username: string,
   vocation: string,
   level: number,
-  password?: string,
 }
 
 export default IUser;
