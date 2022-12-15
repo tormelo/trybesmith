@@ -31,8 +31,6 @@ function validateCredentialsData(userCredentials: IUserCredentials) {
 async function validateCredentialsAuth(userCredentials: IUserCredentials) {
   const [user] = await usersModel.getByCredentials(userCredentials);
 
-  console.log(user);
-
   if (!user) {
     return { type: 'UNAUTHORIZED', message: 'Username or password invalid' }; 
   }
